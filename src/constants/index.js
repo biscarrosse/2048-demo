@@ -1,5 +1,7 @@
 import { isDivisibleByFour } from "../utils";
 
+const ACCEPTED_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+
 const SIDE_SIZE = 4;
 
 const CELLS_EMPTY = Array(SIDE_SIZE * SIDE_SIZE).fill();
@@ -19,63 +21,53 @@ const CELLS = CELLS_EMPTY.reduce((prev, _curr, idx) => {
   }
 }, []);
 
-// TODO: use it
-const TILE_VARIANS = [
-  {
-    value: 2,
+// no need to use Map
+// no need to keep the number type of access key for now
+const TILE_VARIANTS = {
+  2: {
     bg: "rgb(239 242 255)",
     text: "black",
   },
-  {
-    value: 4,
+  4: {
     bg: "rgb(231 237 255)",
     text: "black",
   },
-  {
-    value: 8,
+  8: {
     bg: "rgb(214 220 255)",
     text: "black",
   },
-  {
-    value: 16,
+  16: {
     bg: "rgb(195 204 255)",
     text: "black",
   },
-  {
-    value: 32,
+  32: {
     bg: "rgb(188 209 255)",
     text: "black",
   },
-  {
-    value: 64,
+  64: {
     bg: "rgb(135 172 255)",
     text: "white",
   },
-  {
-    value: 128,
+  128: {
     bg: "rgb(118 160 255)",
     text: "white",
   },
-  {
-    value: 256,
+  256: {
     bg: "rgb(93 142 255)",
     text: "white",
   },
-  {
-    value: 512,
+  512: {
     bg: "rgb(63 121 255)",
     text: "white",
   },
-  {
-    value: 1024,
+  1024: {
     bg: "rgb(14 87 255)",
     text: "white",
   },
-  {
-    value: 2048,
+  2048: {
     bg: "rgb(2 54 172)",
     text: "white",
   },
-];
+};
 
-export { CELLS, TILE_VARIANS };
+export { ACCEPTED_KEYS, CELLS, TILE_VARIANTS };
