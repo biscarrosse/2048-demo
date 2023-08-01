@@ -1,5 +1,13 @@
 import { isDivisibleByFour } from "../utils";
 
+// coordinates system convention
+// [0,0] - - - > +x
+//   |       [3, 0]
+//   |       [3, 1]
+//   |
+//   v       [3, 3]
+//   +y
+
 const ACCEPTED_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
 const SIDE_SIZE = 4;
@@ -73,7 +81,7 @@ const TILE_VARIANTS = {
 // TODO: func get random initial tiles
 const TILES_INITIAL = [
   { value: 2, x: 0, y: 0 },
-  { value: 2, x: 0, y: 1 },
+  { value: 2, x: 1, y: 0 },
   // { value: 4, x: 2, y: 3 },
 ];
 
