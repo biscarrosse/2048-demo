@@ -17,9 +17,9 @@ const StyledTile = styled.div`
   background-color: ${({ bg }) => {
     return bg;
   }};
-  transform: ${({ translateX, translateY }) => {
-    const x = translateX === 0 ? 0 : translateX + "00%";
-    const y = translateY === 0 ? 0 : translateY + "00%";
+  transform: ${({ translatex, translatey }) => {
+    const x = translatex === 0 ? 0 : translatex + "00%";
+    const y = translatey === 0 ? 0 : translatey + "00%";
     return `translate(${x}, ${y})`;
   }};
   transition: transform ease-in-out 200ms;
@@ -36,8 +36,8 @@ export const Tile = ({ tile, state }) => {
       // className={`tile ${tile.x > 0 ? "tile-x" : ""}`}
       bg={TILE_VARIANTS[tile.value].bg}
       color={TILE_VARIANTS[tile.value].text}
-      translateX={state ? tile.x : 0}
-      translateY={state ? tile.y : 0}
+      translatex={tile.x}
+      translatey={tile.y}
     >
       <h1>{tile.value}</h1>
     </StyledTile>

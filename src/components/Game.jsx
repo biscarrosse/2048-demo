@@ -20,58 +20,43 @@ import { Tile } from "./Tile";
 // TODO: func get random initial tiles
 
 const TILES_INITIAL = [
-  { id: 0, value: 2, x: 0, y: 0 },
-  { id: 0, value: 2, x: 0, y: 1 },
-  { id: 0, value: 4, x: 2, y: 3 },
+  { value: 2, x: 0, y: 0 },
+  { value: 2, x: 0, y: 1 },
+  { value: 4, x: 2, y: 3 },
 ];
 
 const Game = () => {
-  const [state, setState] = useState(false);
   const [tiles, setTiles] = useState(TILES_INITIAL);
-
-  const moveTiles = (direction) => {
-    console.log("___ moveTiles: ", direction);
-
-    setTiles((prev) => {
-      return [
-        { value: 2, x: 1, y: 0 },
-        ...prev,
-        // { value: 2, x: 1, y: 0 },
-        // { value: 2, x: 1, y: 1 },
-        // { value: 4, x: 3, y: 3 },
-      ];
-    });
-  };
 
   // const Keys = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
   const handleEvent = ({ key }) => {
     const found = ACCEPTED_KEYS.find((accepted_key) => key === accepted_key);
     if (!found) return;
-    moveTiles(key);
-  };
-  const toggle = () => {
-    setState((prevValue) => !prevValue);
+
+    // const direction = key;
+
+    setTiles((_prev) => {
+      return [
+        // ...prev,
+        { value: 2, x: 1, y: 0 },
+        { value: 2, x: 1, y: 1 },
+        { value: 4, x: 3, y: 3 },
+      ];
+    });
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", toggle);
-    // window.addEventListener("keydown", handleEvent);
+    window.addEventListener("keydown", handleEvent);
 
     return () => {
       // cleanup
-      window.removeEventListener("keydown", toggle);
-      // window.removeEventListener("keydown", handleEvent);
+
+      window.removeEventListener("keydown", handleEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // TODO: listen for arrow keys press
-
-  const startGame = () => {
-    //
-  };
-
-  const getTile = (x, y) => {
+  const getTile = (x, y, tiles) => {
     let res = null;
     tiles.forEach((tile) => {
       if (tile.x === x && tile.y === y) {
@@ -91,15 +76,8 @@ const Game = () => {
         })}
 
         {/* TILES */}
-        {CELLS.map((cell, idx) => {
-          const { x, y } = cell;
-          const tile = getTile(x, y);
-
-          return tile ? (
-            // <div key={idx} className={`tile ${state ? "tile-moved" : ""}`}>
-            // </div>
-            <Tile key={idx} tile={tile} state={state} />
-          ) : null;
+        {tiles.map((tile, idx) => {
+          return <Tile key={idx} tile={tile} />;
         })}
       </div>
     </>
