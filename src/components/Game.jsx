@@ -1,47 +1,40 @@
 import { useState, useEffect } from "react";
-import { ACCEPTED_KEYS, CELLS } from "../constants";
+import { ACCEPTED_KEYS, CELLS, TILES_INITIAL } from "../constants";
 import { Tile } from "./Tile";
 
-// const Koko = styled.div`
-//   height: 100px;
-//   width: ${({ width }) => {
-//     return width;
-//   }}px;
-//   background-color: #768fc5;
-//   margin: 0 auto; /* So as to center the box */
-//   transition-property: width;
-//   transition-duration: 250ms;
-// `;
-
 // TODO: TS
-
 // TODO: func get random tile with value 2 to available position
-
-// TODO: func get random initial tiles
-
-const TILES_INITIAL = [
-  { value: 2, x: 0, y: 0 },
-  { value: 2, x: 0, y: 1 },
-  { value: 4, x: 2, y: 3 },
-];
 
 const Game = () => {
   const [tiles, setTiles] = useState(TILES_INITIAL);
 
   // const Keys = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
-  const handleEvent = ({ key }) => {
-    const found = ACCEPTED_KEYS.find((accepted_key) => key === accepted_key);
+  const handleEvent = ({ key: direction }) => {
+    const found = ACCEPTED_KEYS.find(
+      (accepted_key) => direction === accepted_key
+    );
     if (!found) return;
 
-    // const direction = key;
+    setTiles((prev) => {
+      const nextTiles = prev.map((prevTile) => {
+        let nextTile = Object.assign({}, prevTile);
 
-    setTiles((_prev) => {
-      return [
-        // ...prev,
-        { value: 2, x: 1, y: 0 },
-        { value: 2, x: 1, y: 1 },
-        { value: 4, x: 3, y: 3 },
-      ];
+        if (direction === "ArrowRight") {
+          nextTile.x = nextTile.x === 3 ? 3 : nextTile.x + 1;
+        }
+        if (direction === "ArrowUp") {
+          nextTile.y = nextTile.y === 0 ? 0 : nextTile.y - 1;
+        }
+        if (direction === "ArrowLeft") {
+          nextTile.x = nextTile.x === 0 ? 0 : nextTile.x - 1;
+        }
+        if (direction === "ArrowDown") {
+          nextTile.y = nextTile.y === 3 ? 3 : nextTile.y + 1;
+        }
+        return nextTile;
+      });
+
+      return nextTiles;
     });
   };
 
@@ -55,17 +48,6 @@ const Game = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const getTile = (x, y, tiles) => {
-    let res = null;
-    tiles.forEach((tile) => {
-      if (tile.x === x && tile.y === y) {
-        res = tile;
-      }
-    });
-
-    return res;
-  };
 
   return (
     <>

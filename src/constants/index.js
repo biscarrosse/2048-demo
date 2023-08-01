@@ -70,4 +70,11 @@ const TILE_VARIANTS = {
   },
 };
 
-export { ACCEPTED_KEYS, CELLS, TILE_VARIANTS };
+// TODO: func get random initial tiles
+const TILES_INITIAL = [
+  { value: 2, x: 0, y: 0 },
+  { value: 2, x: 0, y: 1 },
+  // { value: 4, x: 2, y: 3 },
+];
+
+export { ACCEPTED_KEYS, CELLS, TILE_VARIANTS, TILES_INITIAL };
