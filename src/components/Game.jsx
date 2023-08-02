@@ -28,13 +28,17 @@ const Game = () => {
   }, [tiles]);
 
   useEffect(() => {
+    if (win) {
+      window.removeEventListener("keydown", handleEvent);
+      return;
+    }
     window.addEventListener("keydown", handleEvent);
     return () => {
       // cleanup
       window.removeEventListener("keydown", handleEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [win]);
 
   // const Keys = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
   const handleEvent = ({ key: direction }) => {
