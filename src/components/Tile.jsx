@@ -21,7 +21,7 @@ const StyledTile = styled.div`
     })`;
   }};
   will-change: transform;
-  transition: transform ease-in-out 9000ms;
+  transition: transform ease-in-out 150ms;
 `;
 
 export const Tile = ({ tile }) => {
