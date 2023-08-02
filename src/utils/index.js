@@ -51,4 +51,22 @@ const removeAtopTiles = (tiles) => {
   return accumulated;
 };
 
-export { getCollidingTile, isDivisibleByFour, removeAtopTiles };
+const getRandomIntegerFromInterval = (min, max) => {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const canDoubleTheValue = (prevTile, nextTile) => {
+  console.log("___ canDoubleTheValue: ", prevTile, nextTile);
+  if (prevTile.x === nextTile.x && prevTile.y === nextTile.y) {
+    return false;
+  } else return true;
+};
+
+export {
+  canDoubleTheValue,
+  getCollidingTile,
+  getRandomIntegerFromInterval,
+  isDivisibleByFour,
+  removeAtopTiles,
+};

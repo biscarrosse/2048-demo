@@ -61,17 +61,10 @@ background-color: ${({ bg }) => {
 .koko-wrap {
   position: relative;
 }
-.koko {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  background-color: #f19075;
-  margin: 0 auto; /* So as to center the box */
-  transition-property: all;
-  transition-duration: 250ms;
-}
 
-.koko-moved {
-  transform: translate(100px, 0);
-  background-color: #1e5de7;
+.win {
+  padding: 1rem;
+  background-color: #34ffe5;
+  font-weight: 700;
+  font-stretch: condensed;
 }
