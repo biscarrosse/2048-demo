@@ -1,3 +1,10 @@
+:root {
+  --bg-cell: rgb(244, 244, 244);
+  --border-cell: rgb(197, 197, 255);
+  --bg-win: #15e2b6;
+  --bg-lose: #fa5c44;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,24 +14,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .wrap {
   padding: 1rem;
+  max-width: 600px;
+  margin: auto;
 }
+
 .grid {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
+
 .cell {
   aspect-ratio: 1;
-  background-color: rgb(244, 244, 244);
-  border: 1px solid rgb(197, 197, 255);
+  background-color: var(--bg-cell);
+  border: 1px solid var(--border-cell);
 }
 
 .endgame {
@@ -32,20 +38,11 @@ code {
   font-weight: 700;
   font-stretch: condensed;
 }
+
 .win {
-  background-color: #15e2b6;
+  background-color: var(--bg-win);
 }
 
 .lost {
-  background-color: #fa5c44;
-}
-.jo {
-  background-color: #15e2b6;
-  width: 200px;
-  transition: all ease-in-out 200ms;
-}
-.ne {
-  background-color: #fa5c44;
-  width: 100px;
-  transition: all ease-in-out 200ms;
+  background-color: var(--bg-lose);
 }

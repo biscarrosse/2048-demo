@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { TILE_VARIANTS } from "../constants";
+import { DEVICE } from "../constants/screens";
 import type { TileType } from "../types";
 import type { TileKeys } from "../constants";
 
@@ -31,6 +32,13 @@ const StyledTile = styled.div<StyledTileType>`
   transition: transform ease-in-out 150ms;
 `;
 
+const H1 = styled.h1`
+  font-size: 1rem;
+  @media ${DEVICE.mobileL} {
+    font-size: 2rem;
+  }
+`;
+
 export const Tile = ({ tile }: { tile: TileType }) => {
   return (
     <StyledTile
@@ -39,7 +47,7 @@ export const Tile = ({ tile }: { tile: TileType }) => {
       x={tile.x}
       y={tile.y}
     >
-      <h1>{tile.value}</h1>
+      <H1>{tile.value}</H1>
     </StyledTile>
   );
 };

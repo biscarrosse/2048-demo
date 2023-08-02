@@ -10,7 +10,6 @@ import {
 } from "../utils";
 import { Tile } from "./Tile";
 import type { Coordinate } from "../types";
-// TODO: media queries
 
 const Game = () => {
   const [tiles, setTiles] = useState(getInitialTiles());
