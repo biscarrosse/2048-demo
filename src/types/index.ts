@@ -1,6 +1,4 @@
-export type TileType = {
-  x: number;
-  y: number;
+export type TileType = Coordinate & {
   value: number;
 };
 
