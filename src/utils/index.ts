@@ -1,22 +1,26 @@
-const isDivisibleByFour = (num) => {
-  const input = typeof num === "number" ? num.toString() : num;
+import type { AcceptedKey, TileType } from "../types";
+
+const isDivisibleByFour = (num: number) => {
+  const input = num.toString();
 
   if (input === "0") return false;
-  if (input.length <= 2) return !Boolean(input % 4);
-
-  const lastTwoCharacters = input.slice(input.length - 2, input.length);
-  // +lastTwoCharacters would also produce a number
-  // yet using Number constructor I make myself clear about my intention
-  return !Boolean(Number(lastTwoCharacters) % 4);
+  if (input.length <= 2) {
+    return !Boolean(num % 4);
+  } else {
+    const lastTwoCharacters = input.slice(input.length - 2, input.length);
+    // +lastTwoCharacters would also produce a number
+    // yet using Number constructor I make myself clear about my intention
+    return !Boolean(Number(lastTwoCharacters) % 4);
+  }
 };
 
-const removeItemFromArrayByIndex = (array, index) => {
+const removeItemFromArrayByIndex = (array: Array<TileType>, index: number) => {
   // return a new array withouth the object on input index:
   return array.slice(0, index).concat(array.slice(index + 1));
 };
 
-const removeAtopTiles = (tiles) => {
-  let cleanedTiles = [];
+const removeAtopTiles = (tiles: Array<TileType>) => {
+  let cleanedTiles: Array<TileType> = [];
 
   tiles.forEach((tile) => {
     if (cleanedTiles.length === 0) {
@@ -51,12 +55,12 @@ const removeAtopTiles = (tiles) => {
   return cleanedTiles;
 };
 
-const getRandomIntegerFromInterval = (min, max) => {
+const getRandomIntegerFromInterval = (min: number, max: number) => {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const getInitialTiles = () => {
+const getInitialTiles = (): Array<TileType> => {
   return [
     {
       value: 2,
@@ -71,7 +75,11 @@ const getInitialTiles = () => {
   ];
 };
 
-const getTileNeighbor = (tileOrigin, allTiles, direction) => {
+const getTileNeighbor = (
+  tileOrigin: TileType,
+  allTiles: Array<TileType>,
+  direction: AcceptedKey
+) => {
   if (direction === "ArrowRight") {
     if (tileOrigin.x === 3) return null;
     const found = allTiles.find(
@@ -103,7 +111,15 @@ const getTileNeighbor = (tileOrigin, allTiles, direction) => {
   }
 };
 
-const canMoveInDirection = (tile, allTiles, direction) => {
+type CanMove = {
+  canMove: boolean;
+  canMerge: boolean;
+};
+const canMoveInDirection = (
+  tile: TileType,
+  allTiles: Array<TileType>,
+  direction: AcceptedKey
+): CanMove => {
   // if tile is at last index (for the direction),
   // then it can not move in the direction
   if (direction === "ArrowRight") {
@@ -138,7 +154,12 @@ const canMoveInDirection = (tile, allTiles, direction) => {
   return canMoveInDirection(neighbor, allTiles, direction);
 };
 
-const getNextTile = ({ currentTile, direction, canMerge }) => {
+type NextTile = {
+  currentTile: TileType;
+  direction: AcceptedKey;
+  canMerge: boolean;
+};
+const getNextTile = ({ currentTile, direction, canMerge }: NextTile) => {
   let nextTile = Object.assign({}, currentTile);
   if (canMerge) nextTile.value = 2 * nextTile.value;
   if (direction === "ArrowRight") {
@@ -164,5 +185,5 @@ export {
   // getTileNeighbor,
   isDivisibleByFour,
   removeAtopTiles,
-  removeItemFromArrayByIndex,
+  // removeItemFromArrayByIndex,
 };

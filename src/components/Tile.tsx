@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { TILE_VARIANTS } from "../constants";
+import type { TileType } from "../types";
+import type { TileKeys } from "../constants";
 
-const StyledTile = styled.div`
+type StyledTileType = {
+  bg: string;
+  x: number;
+  y: number;
+};
+const StyledTile = styled.div<StyledTileType>`
   position: absolute;
   width: 25%;
   aspect-ratio: 1;
@@ -24,11 +31,11 @@ const StyledTile = styled.div`
   transition: transform ease-in-out 150ms;
 `;
 
-export const Tile = ({ tile }) => {
+export const Tile = ({ tile }: { tile: TileType }) => {
   return (
     <StyledTile
-      bg={TILE_VARIANTS[tile.value].bg}
-      color={TILE_VARIANTS[tile.value].text}
+      bg={TILE_VARIANTS[tile.value as TileKeys].bg}
+      color={TILE_VARIANTS[tile.value as TileKeys].text}
       x={tile.x}
       y={tile.y}
     >

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="wrap">
       <h1>2048</h1>

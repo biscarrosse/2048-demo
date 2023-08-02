@@ -4,7 +4,9 @@ import "./index.css";
 import Game from "./components/Game";
 import Layout from "./Layout";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   <React.StrictMode>
     <Layout>

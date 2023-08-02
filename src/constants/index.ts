@@ -1,4 +1,5 @@
 import { isDivisibleByFour } from "../utils";
+import type { AcceptedKey, Coordinate } from "../types";
 
 // coordinates system convention
 // [0,0] - - - > +x
@@ -8,14 +9,23 @@ import { isDivisibleByFour } from "../utils";
 //   v       [3, 3]
 //   +y
 
-const ACCEPTED_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+const ACCEPTED_KEYS: Array<AcceptedKey> = [
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+];
+
+export const END_GAME = 2048;
 
 const SIDE_SIZE = 4;
 
-const CELLS_EMPTY = Array(SIDE_SIZE * SIDE_SIZE).fill();
+const CELLS_EMPTY: Array<null> = Array(SIDE_SIZE * SIDE_SIZE).fill(null);
 
+const initVal: Array<Coordinate> = [];
 const CELLS = CELLS_EMPTY.reduce((prev, _curr, idx) => {
   const isNewRow = isDivisibleByFour(idx);
+
   if (prev.length === 0) {
     prev[idx] = { x: 0, y: 0 };
     return prev;
@@ -27,8 +37,9 @@ const CELLS = CELLS_EMPTY.reduce((prev, _curr, idx) => {
     prev[idx] = { x: prev[idx - 1].x + 1, y: prev[idx - 1].y };
     return prev;
   }
-}, []);
+}, initVal);
 
+export type TileKeys = keyof typeof TILE_VARIANTS;
 const TILE_VARIANTS = {
   2: {
     bg: "rgb(239 242 255)",

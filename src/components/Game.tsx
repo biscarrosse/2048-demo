@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { ACCEPTED_KEYS, CELLS } from "../constants";
+import { ACCEPTED_KEYS, CELLS, END_GAME } from "../constants";
+import type { AcceptedKey } from "../types";
 import {
   canMoveInDirection,
   getInitialTiles,
@@ -8,7 +9,7 @@ import {
   removeAtopTiles,
 } from "../utils";
 import { Tile } from "./Tile";
-// TODO: TS
+import type { Coordinate } from "../types";
 // TODO: media queries
 
 const Game = () => {
@@ -20,7 +21,7 @@ const Game = () => {
   const [lostScore, setLoseScore] = useState(0);
 
   useEffect(() => {
-    const found = tiles.find((tile) => tile.value === 2048);
+    const found = tiles.find((tile) => tile.value === END_GAME);
     if (found) {
       setWin(true);
       let score = 0;
@@ -58,7 +59,7 @@ const Game = () => {
 
   useEffect(() => {
     if (isSettingNewTile) {
-      const emptyCells = [];
+      const emptyCells: Array<Coordinate> = [];
 
       // get only empty cells:
       CELLS.forEach((cell) => {
@@ -100,8 +101,9 @@ const Game = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSettingNewTile]);
 
-  // type Keys = "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight";
-  const handleEvent = ({ key: direction }) => {
+  const handleEvent = (event: KeyboardEvent) => {
+    const direction = event.key as AcceptedKey;
+
     const found = ACCEPTED_KEYS.find(
       (accepted_key) => direction === accepted_key
     );
