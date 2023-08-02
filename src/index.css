@@ -39,3 +39,13 @@ code {
 .lost {
   background-color: #fa5c44;
 }
+.jo {
+  background-color: #15e2b6;
+  width: 200px;
+  transition: all ease-in-out 200ms;
+}
+.ne {
+  background-color: #fa5c44;
+  width: 100px;
+  transition: all ease-in-out 200ms;
+}
