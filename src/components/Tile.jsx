@@ -1,21 +1,5 @@
-// import styled, { keyframes } from "styled-components";
 import styled from "styled-components";
 import { TILE_VARIANTS } from "../constants";
-
-// const woah = keyframes`
-//   30% {
-//     transform: scale(0.2);
-//     opacity: 0.7
-//   }
-//   50% {
-//     transform: scale(1.1);
-//     opacity: 1
-//   }
-//   20 {
-//     transform: scale(0.7);
-//     opacity: 0.8
-//   }
-// `;
 
 const StyledTile = styled.div`
   position: absolute;
@@ -32,12 +16,13 @@ const StyledTile = styled.div`
     return bg;
   }};
   transform: ${({ x, y }) => {
-    return `translate(${x === 0 ? 0 : x + "00%"}, ${y === 0 ? 0 : y + "00%"})`;
+    return `translateX(${x === 0 ? 0 : x + "00%"}) translateY(${
+      y === 0 ? 0 : y + "00%"
+    })`;
   }};
-  transition: transform ease-in-out 200ms;
+  will-change: transform;
+  transition: transform ease-in-out 9000ms;
 `;
-
-// animation: ${woah} 200ms;
 
 export const Tile = ({ tile }) => {
   return (
