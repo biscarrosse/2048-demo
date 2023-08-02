@@ -15,21 +15,19 @@ const StyledTile = styled.div`
   background-color: ${({ bg }) => {
     return bg;
   }};
-  transform: ${({ translatex, translatey }) => {
-    const x = translatex === 0 ? 0 : translatex + "00%";
-    const y = translatey === 0 ? 0 : translatey + "00%";
-    return `translate(${x}, ${y})`;
+  transform: ${({ x, y }) => {
+    return `translate(${x === 0 ? 0 : x + "00%"}, ${y === 0 ? 0 : y + "00%"})`;
   }};
-  transition: transform ease-in-out 200ms;
+  transition: transform linear 200ms;
 `;
-
+// ease-in-out
 export const Tile = ({ tile }) => {
   return (
     <StyledTile
       bg={TILE_VARIANTS[tile.value].bg}
       color={TILE_VARIANTS[tile.value].text}
-      translatex={tile.x}
-      translatey={tile.y}
+      x={tile.x}
+      y={tile.y}
     >
       <h1>{tile.value}</h1>
     </StyledTile>

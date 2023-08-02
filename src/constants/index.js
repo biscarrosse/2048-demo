@@ -29,8 +29,6 @@ const CELLS = CELLS_EMPTY.reduce((prev, _curr, idx) => {
   }
 }, []);
 
-// no need to use Map
-// no need to keep the number type of access key for now
 const TILE_VARIANTS = {
   2: {
     bg: "rgb(239 242 255)",
@@ -78,11 +76,22 @@ const TILE_VARIANTS = {
   },
 };
 
-// TODO: func get random initial tiles
 const TILES_INITIAL = [
+  // { value: 2, x: 2, y: 1 },
+  // { value: 4, x: 3, y: 1 },
+  // { value: 8, x: 3, y: 0 },
+  // { value: 4, x: 1, y: 1 },
+
+  // { value: 2, x: 1, y: 3 },
+  // { value: 4, x: 2, y: 3 },
+  // { value: 8, x: 2, y: 2 },
+  // { value: 4, x: 0, y: 3 },
+  //
   { value: 2, x: 0, y: 0 },
   { value: 2, x: 1, y: 0 },
   // { value: 4, x: 2, y: 3 },
+  // { value: 8, x: 2, y: 2 },
+  // { value: 2, x: 0, y: 3 },
 ];
 
 export { ACCEPTED_KEYS, CELLS, TILE_VARIANTS, TILES_INITIAL };
