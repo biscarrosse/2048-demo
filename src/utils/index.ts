@@ -61,7 +61,7 @@ const getRandomIntegerFromInterval = (min: number, max: number) => {
 };
 
 const getInitialTiles = (): Array<TileType> => {
-  return [
+  const data = [
     {
       value: 2,
       x: getRandomIntegerFromInterval(0, 3),
@@ -73,6 +73,13 @@ const getInitialTiles = (): Array<TileType> => {
       y: getRandomIntegerFromInterval(0, 3),
     },
   ];
+
+  // lazy approach to check for duplicite tiles:
+  if (data[0].x === data[1].x && data[0].y === data[1].y) {
+    return getInitialTiles();
+  }
+
+  return data;
 };
 
 const getTileNeighbor = (
