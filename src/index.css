@@ -3,6 +3,8 @@
   --border-cell: rgb(197, 197, 255);
   --bg-win: #15e2b6;
   --bg-lose: #fa5c44;
+  --bg-btn-new-game: rgb(9, 9, 199);
+  --bg-btn-new-game-hover: rgb(52, 52, 210);
 }
 
 body {
@@ -45,4 +47,19 @@ body {
 
 .lost {
   background-color: var(--bg-lose);
+}
+
+.btn-new-game {
+  padding: 1rem;
+  background-color: var(--bg-btn-new-game);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  width: 100%;
+  border: none;
+}
+.btn-new-game:hover {
+  background-color: var(--bg-btn-new-game-hover);
+  cursor: pointer;
 }

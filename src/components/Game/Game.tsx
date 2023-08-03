@@ -10,15 +10,13 @@ import {
 } from "../../utils";
 import { Tile } from "../Tile/Tile";
 import type { Coordinate } from "../../types";
-// TODO: testing & API
 
 const Game = () => {
   const [tiles, setTiles] = useState(getInitialTiles());
   const [win, setWin] = useState(false);
   const [lost, setLose] = useState(false);
+  const [score, setScore] = useState(0);
   const [isSettingNewTile, setSettingNewTile] = useState(false);
-  const [winScore, setWinScore] = useState(0);
-  const [lostScore, setLoseScore] = useState(0);
 
   useEffect(() => {
     const found = tiles.find((tile) => tile.value === END_GAME);
@@ -26,13 +24,13 @@ const Game = () => {
       setWin(true);
       let score = 0;
       tiles.forEach((tile) => (score += tile.value));
-      setWinScore(score);
+      setScore(score);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tiles]);
 
   useEffect(() => {
-    if (win) {
+    if (win || lost) {
       window.removeEventListener("keydown", handleEvent);
       return;
     }
@@ -42,20 +40,7 @@ const Game = () => {
       window.removeEventListener("keydown", handleEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [win]);
-
-  useEffect(() => {
-    if (lost) {
-      window.removeEventListener("keydown", handleEvent);
-      return;
-    }
-    window.addEventListener("keydown", handleEvent);
-    return () => {
-      // cleanup
-      window.removeEventListener("keydown", handleEvent);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lost]);
+  }, [win, lost]);
 
   useEffect(() => {
     if (isSettingNewTile) {
@@ -74,7 +59,7 @@ const Game = () => {
         setLose(true);
         let score = 0;
         tiles.forEach((tile) => (score += tile.value));
-        setLoseScore(score);
+        setScore(score);
         return;
       }
 
@@ -100,6 +85,15 @@ const Game = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSettingNewTile]);
+
+  const startGame = () => {
+    // start a new game sequence:
+    setScore(0);
+    setWin(false);
+    setLose(false);
+    const newTiles = getInitialTiles();
+    setTiles(newTiles);
+  };
 
   const handleEvent = (event: KeyboardEvent) => {
     const direction = event.key as AcceptedKey;
@@ -148,20 +142,24 @@ const Game = () => {
       {win && (
         <div className="endgame win">
           <h1>You have won the game!</h1>
-          <h2>Your score: {winScore}</h2>
+          <h2>Your score: {score}</h2>
         </div>
       )}
 
       {lost && (
         <div className="endgame lost">
           <h1>You have lost the game!</h1>
-          <h2>Your score: {lostScore}</h2>
+          <h2>Your score: {score}</h2>
         </div>
       )}
 
+      <button className="btn-new-game" onClick={startGame}>
+        Start a new game
+      </button>
+
       <div className="grid">
         {/* CELLS */}
-        {CELLS.map((cell, idx) => {
+        {CELLS.map((_cell, idx) => {
           return <div key={idx} className="cell"></div>;
         })}
 
