@@ -182,8 +182,8 @@ export {
   getInitialTiles,
   getNextTile,
   getRandomIntegerFromInterval,
-  // getTileNeighbor,
+  getTileNeighbor,
   isDivisibleByFour,
   removeAtopTiles,
-  // removeItemFromArrayByIndex,
+  removeItemFromArrayByIndex,
 };

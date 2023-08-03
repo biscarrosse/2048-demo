@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { TILE_VARIANTS } from "../constants";
-import { DEVICE } from "../constants/screens";
-import type { TileType } from "../types";
-import type { TileKeys } from "../constants";
+import { TILE_VARIANTS } from "../../constants";
+import { DEVICE } from "../../constants/screens";
+import type { TileType } from "../../types";
+import type { TileKeys } from "../../constants";
 
 type StyledTileType = {
   bg: string;

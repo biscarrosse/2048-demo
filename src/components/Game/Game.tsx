@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { ACCEPTED_KEYS, CELLS, END_GAME } from "../constants";
-import type { AcceptedKey } from "../types";
+import { ACCEPTED_KEYS, CELLS, END_GAME } from "../../constants";
+import type { AcceptedKey } from "../../types";
 import {
   canMoveInDirection,
   getInitialTiles,
   getNextTile,
   getRandomIntegerFromInterval,
   removeAtopTiles,
-} from "../utils";
-import { Tile } from "./Tile";
-import type { Coordinate } from "../types";
+} from "../../utils";
+import { Tile } from "../Tile/Tile";
+import type { Coordinate } from "../../types";
+// TODO: testing & API
 
 const Game = () => {
   const [tiles, setTiles] = useState(getInitialTiles());
